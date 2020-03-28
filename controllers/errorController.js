@@ -10,7 +10,7 @@ handleValidationErrorBD = (err) => {
 
 handleDeuplicateFieldDB = (err) => {
 	const value = err.errmsg.match(/(["'])(?:(?=(\\?))\2.)*?\1/);
-	console.log(value);
+	// console.log(value);
 
 	const message = `Duplicate field value: ${value}. Please use another value`;
 };
@@ -36,6 +36,8 @@ sendErrorDev = (err, req, res) => {
 			stack: err.stack
 		});
 	} else {
+		console.log('Error', err);
+
 		res.status(err.statusCode).render('error', {
 			title: 'something went wrong!',
 			msg: err.messages
@@ -75,7 +77,6 @@ sendErrorPro = (err, req, res) => {
 module.exports = (err, req, res, next) => {
 	err.statusCode = err.statusCode || 500;
 	err.status = err.status || 'fail';
-	console.log(process.env.NODE_ENV);
 
 	if (process.env.NODE_ENV === 'development') {
 		sendErrorDev(err, req, res);
