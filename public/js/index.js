@@ -30,7 +30,7 @@ if (loginForm)
 if (signupForm) {
 	signupForm.addEventListener('submit', (e) => {
 		e.preventDefault();
-		document.querySelector('btn--register').textContent = 'Registring...';
+		document.querySelector('.btn--register').textContent = 'Registring...';
 		const name = document.getElementById('name').value;
 		const email = document.getElementById('email').value;
 		const password = document.getElementById('password').value;
